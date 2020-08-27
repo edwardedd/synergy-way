@@ -1,0 +1,36 @@
+<p>cart works!</p>
+
+<!-- <div *ngFor='let cart of cart_state'>
+  <div class="card">
+    <div class="card-body">
+        article {{cart}}
+    </div>
+    <input
+      type="number"
+      min="1"
+      value='1'
+      (change)='changeValue($event)'
+    >
+  </div>
+</div> -->
+<div *ngFor='let cart of cart_state'>
+  <div *ngFor='let item of items'>
+    <div class="card" *ngIf='item.id===cart'>
+      <div class="card-body">
+          {{item.name}},
+      </div>
+      <input
+        type="number"
+        min="1"
+        value='1'
+        (change)='changeValue($event,item)'
+      >
+      <input type="text" class="price" [(ngModel)]='price[item.id]'/>
+      {{price[item.id] ? price[item.id] : item.price}}
+    </div>
+  </div>
+</div>
+
+<div class="total_price"></div>
+
+
