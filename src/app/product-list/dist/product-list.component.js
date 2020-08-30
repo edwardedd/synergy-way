@@ -12,31 +12,58 @@ var ProductListComponent = /** @class */ (function () {
     function ProductListComponent(shopService) {
         this.shopService = shopService;
         this.array_id = [];
-        this.disable = false;
+        this.disable = true;
+        this.amount = [];
+        this.product_id = [];
+        this.blockSetitem = true;
     }
     ProductListComponent.prototype.ngOnInit = function () {
         this.items = this.shopService.items();
-        console.log(this.items);
+        this.addAmount();
     };
-    // get items() {
-    //   return this.shopService.items()
-    // }
     ProductListComponent.prototype.addToCard = function (id) {
-        if (this.array_id.includes(id)) {
+        if (JSON.parse(localStorage.getItem("this.array_id")) === null) {
+            this.array_id.push(id);
+            localStorage['this.array_id'] = JSON.stringify(this.array_id);
+            var getId = JSON.parse(localStorage.getItem("this.array_id"));
+        }
+        else {
+            var getId = JSON.parse(localStorage.getItem("this.array_id"));
+            if (getId.includes(id)) {
+            }
+            else {
+                getId.push(id);
+                localStorage['this.array_id'] = JSON.stringify(getId);
+            }
+        }
+        this.addAmount();
+    };
+    ProductListComponent.prototype.changeValue = function (id, e) {
+        var amount = e.target.value;
+        this.amount[id] = amount;
+        localStorage.setItem('amount' + id, JSON.stringify(amount));
+    };
+    ProductListComponent.prototype.getAmount = function () {
+        for (var i = 0; i < this.product_id.length; i++) {
+            this.amount[this.product_id[i]] = JSON.parse(localStorage.getItem('amount' + this.product_id[i]));
+        }
+    };
+    ProductListComponent.prototype.addAmount = function () {
+        if (localStorage.getItem('this.array_id') === null) {
             return;
         }
         else {
-            this.array_id.push(id);
-            localStorage['this.array_id'] = JSON.stringify(this.array_id);
-            console.log(this.array_id);
+            this.product_id = JSON.parse(localStorage["this.array_id"]);
+            for (var i = 0; i < this.product_id.length; i++) {
+                if (JSON.parse(localStorage.getItem("amount" + this.product_id[i])) === null) {
+                    localStorage.setItem('amount' + this.product_id[i], JSON.stringify(1));
+                    this.amount[this.product_id[i]] = 1;
+                }
+                else {
+                    this.amount[this.product_id[i]] = JSON.parse(localStorage.getItem('amount' + this.product_id[i]));
+                }
+            }
         }
-        // this.disable = true
-    };
-    ProductListComponent.prototype.removeFromCart = function () {
-        console.log('reomve');
-    };
-    ProductListComponent.prototype.changeValue = function (e) {
-        console.log(e.target.value);
     };
     ProductListComponent = __decorate([
         core_1.Component({

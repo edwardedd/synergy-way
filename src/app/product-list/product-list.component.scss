@@ -1,0 +1,17 @@
+.card{
+  margin-bottom: 10px;
+  .price-amount{
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+    .amonut-wrapper{
+      display: flex;
+      .amount{
+        margin-left: 20px;
+        height: 77%;
+        width: 25%;;
+      }
+    }
+  }
+  
+}

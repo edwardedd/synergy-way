@@ -3,31 +3,35 @@
     <div *ngFor='let item of items;'>
       <div class="card">
         <div class="card-header">
-          {{item.name}}
+          <b>{{item.name}}</b>
         </div>
         <div class="card-body" >
           <h5 class="card-title">{{item.label}}</h5>
-          <p class="card-text">Price: {{item.price}}</p>
+          <div class="price-amount">
+            <p class="card-text">Price: {{item.price}}</p>
+            <div class="amonut-wrapper" *ngIf='amount[item.id]'>
+              <p>amount: </p>
+              <input
+                class="amount"
+                type="number"
+                min="1"
+                [value]='amount[item.id]'
+                (change)='changeValue(item.id, $event)'
+              >
+            </div>
+          </div>
+
           <button
             class="btn btn-primary"
-            (click)="addToCard(item.id); item.disable=true"
-            [disabled]='item.disable'
+            (click)="addToCard(item.id); item.disable=false"
             >
             Add to cart
             </button>
-          <button
-            class="btn btn-danger"
-            (click)='removeFromCart(item.id);item.disable=false'
-            *ngIf="item.disable"
-            >
-            Remove from cart
-            </button>
-          <input
-            type="number"
-            min="1"
-            value='1'
-            (change)='changeValue(item.id, $event)'
-          >
+            <p class="alert alert-success" *ngIf='amount[item.id]'>you added product to <a href="/cart">
+              Cart
+            </a>. You can manage number of product, or remove from <a href="/cart">
+              Cart
+            </a></p>
         </div>
       </div>
     </div>

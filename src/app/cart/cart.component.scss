@@ -1,4 +1,21 @@
-.card{
-  display: flex;
-  flex-direction: row;
+.container{
+  .row{
+    display: flex;
+    flex-direction: column;
+
+    .card{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .amount{
+        height: 100%;
+        width: 10%;
+        margin-right: 55px;
+        margin-left: 20px;
+      }
+      .price{
+        margin: 0 25px;
+      }
+    }
+  }
 }
