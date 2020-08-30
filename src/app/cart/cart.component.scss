@@ -7,6 +7,9 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+      .amount_title{
+        margin-bottom: 0;
+      }
       .amount{
         height: 100%;
         width: 10%;

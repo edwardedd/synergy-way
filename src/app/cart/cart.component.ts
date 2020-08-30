@@ -31,7 +31,6 @@ export class CartComponent implements OnInit {
 
 
   changeValue(e,product){
-    console.log(product.id, 'id');
     for(let i=0; i<this.items.length; i++){
       if(this.items[i].id == product.id){
         if(JSON.parse(localStorage.getItem('amount'+product.id))===null){

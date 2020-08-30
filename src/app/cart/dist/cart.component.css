@@ -7,6 +7,9 @@
   flex-direction: row;
   align-items: center;
 }
+.container .row .card .amount_title {
+  margin-bottom: 0;
+}
 .container .row .card .amount {
   height: 100%;
   width: 10%;

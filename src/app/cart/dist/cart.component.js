@@ -36,7 +36,6 @@ var CartComponent = /** @class */ (function () {
         this.totalPrice();
     };
     CartComponent.prototype.changeValue = function (e, product) {
-        console.log(product.id, 'id');
         for (var i = 0; i < this.items.length; i++) {
             if (this.items[i].id == product.id) {
                 if (JSON.parse(localStorage.getItem('amount' + product.id)) === null) {
