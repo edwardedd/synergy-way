@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
       this.addAmount();
   }
 
-  addToCard(id){
+  addToCard(id:number){
     if(JSON.parse(localStorage.getItem("this.array_id"))===null){
       this.array_id.push(id)
       localStorage['this.array_id']=JSON.stringify(this.array_id);
@@ -36,7 +36,7 @@ export class ProductListComponent implements OnInit {
     this.addAmount();
   }
 
-  changeValue(id,e){
+  changeValue(id:number,e){
     let amount = e.target.value;
     this.amount[id] = amount;
     localStorage.setItem('amount'+id,JSON.stringify(amount));

@@ -11,10 +11,10 @@ export class CartComponent implements OnInit {
   product_id:any=[];
   cart_state:any=[];
   items:any;
-  price=[];
-  state_array = [];
+  price:any=[];
+  state_array:any = [];
   total_price:number = 0;
-  amount =[1];
+  amount:any =[1];
   constructor(private shopService: ShopCartService) { }
 
   ngOnInit(): void {
@@ -62,18 +62,17 @@ export class CartComponent implements OnInit {
   }
 
   totalPrice(){
-    let total = 0;
+    let total:number = 0;
     if(this.state_array.length===0){
       this.total_price=0;
     }
     for(let i=0; i<this.state_array.length; i++){
-      console.log(this.price[this.state_array[i]]);
       total +=  this.price[this.state_array[i]];
       this.total_price = total
     }
   }
 
-  removeFromCart(id){
+  removeFromCart(id:number){
     for(let i=0; i<this.state_array.length; i++){
       if(id===this.state_array[i]){
       this.state_array.splice(i, 1)
